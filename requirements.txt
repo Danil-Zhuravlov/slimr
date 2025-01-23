@@ -1,0 +1,7 @@
+fastapi==0.109.0
+uvicorn==0.27.0
+pandas==2.2.0
+python-multipart==0.0.6  # For file uploads
+python-dotenv==1.0.0     # For environment variables
+streamlit==1.30.0        # For MVP frontend
+scikit-learn==1.4.0      # For ML features later
