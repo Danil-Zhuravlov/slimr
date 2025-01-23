@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import uvicorn
+from app.api.routes import router as csv_router
 
 # We'll add these modules as we build them
 # from app.api import routes
@@ -37,6 +38,10 @@ app = FastAPI(
     version="0.1.0",
     lifespan=lifespan
 )
+
+
+# Add this after creating the FastAPI app
+app.include_router(csv_router, prefix="/api", tags=["csv"])
 
 # Add CORS middleware
 app.add_middleware(
