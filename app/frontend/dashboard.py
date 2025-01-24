@@ -33,5 +33,23 @@ if uploaded_file is not None:
         'profit': 'sum',
     }).sort_values(by='profit' ,ascending=False)
 
-    # displays result as text
-    st.text(total_profit)
+   
+    # For most profitable
+    most_profitable_id = total_profit.index[0]  # get the first product ID
+    most_profitable_value = total_profit['profit'].iloc[0]  # get its profit value
+
+    # For least profitable
+    least_profitable_id = total_profit.index[-1] # get the last product ID
+    least_profitable_value = total_profit['profit'].iloc[-1] # get its profit value
+
+    # display results
+    st.metric(
+    f"Most Profitable Product (#{most_profitable_id})", 
+    f"€{most_profitable_value:.2f}"
+    )
+
+
+    st.metric(
+        f"Least Profitable Product (#{least_profitable_id})",
+        f"€{least_profitable_value:.2f}"
+    )
