@@ -42,14 +42,17 @@ if uploaded_file is not None:
     least_profitable_id = total_profit.index[-1] # get the last product ID
     least_profitable_value = total_profit['profit'].iloc[-1] # get its profit value
 
+    col1, col2 = st.columns(2)
+    with col1:
     # display results
-    st.metric(
-    f"Most Profitable Product (#{most_profitable_id})", 
-    f"€{most_profitable_value:.2f}"
-    )
+        st.metric(
+        f"Most Profitable Product (#{most_profitable_id})", 
+        f"€{most_profitable_value:.2f}"
+        )
 
 
-    st.metric(
-        f"Least Profitable Product (#{least_profitable_id})",
-        f"€{least_profitable_value:.2f}"
-    )
+    with col2:
+        st.metric(
+            f"Least Profitable Product (#{least_profitable_id})",
+            f"€{least_profitable_value:.2f}"
+        )
