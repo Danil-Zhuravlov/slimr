@@ -1,0 +1,5 @@
+date,product_id,quantity,price,cost
+2025-01-12,Product1,1,9.49,5.03
+2025-01-12,Product2,3,2.99,1.2
+2025-01-13,Product1,2,9.49,5.03
+2025-01-15,Product3,7,1.63,0.2
