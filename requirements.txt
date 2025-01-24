@@ -5,3 +5,5 @@ python-multipart==0.0.6  # For file uploads
 python-dotenv==1.0.0     # For environment variables
 streamlit==1.30.0        # For MVP frontend
 scikit-learn==1.4.0      # For ML features later
+plotly==5.24.1           # For Visual Analytics
+watchdog==6.0.0          # Required for better Streamlit Performance
