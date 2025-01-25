@@ -42,14 +42,70 @@ if uploaded_file is not None:
     least_profitable_id = total_profit.index[-1] # get the last product ID
     least_profitable_value = total_profit['profit'].iloc[-1] # get its profit value
 
+    # calculate profit from all products
+    total_profits_sum = total_profit['profit'].sum()
+
+
+    # calculate profit distribution in % = (product_profit / total profit from all products) * 100%
+    total_profit_percents = (total_profit['profit'] / total_profits_sum) * 100
+    rounded_percents = total_profit_percents.round(1)
+
+    # Create visualization
+    fig = px.bar(
+        x=rounded_percents.index, # product_id
+        y=rounded_percents.values,
+        labels={
+            'x': 'Product ID',
+            'y': 'Profit Contribution (%)'
+        },
+        title="Product Profit Distribution"
+    )
+
+    fig.update_traces(
+        hovertemplate="<br>".join([
+            "Product: %{x}",
+            "Contribution: %{y}%",
+            "Actual Profit: €%{customdata:.2f}",
+            "<br><i>Consider both % and actual profit</i>"
+        ]),
+        customdata=total_profit['profit'] # total profit per product_id
+    )
+
+    # Update the chart layout
+    fig.update_layout(
+        # Clean, professional look
+        plot_bgcolor='white',
+        yaxis=dict(
+            gridcolor='#E1E1E1',
+            zeroline=True,
+            zerolinecolor='#E1E1E1'
+        ),
+        xaxis=dict(
+            gridcolor='#E1E1E1'
+        ),
+        # Spacing and style
+        bargap=0.4,
+        height=500,
+        margin=dict(t=50, b=50)
+    )
+
+    # Update bars
+    fig.update_traces(
+        marker_color='#2980B9',
+        texttemplate='%{y:.1f}%',  # Show percentage on bars
+        textposition='outside'      # Place text above bars
+    )
+
+    st.plotly_chart(fig)
+
+
+    # create two columns with metrics of most/least profitable products
     col1, col2 = st.columns(2)
     with col1:
-    # display results
         st.metric(
         f"Most Profitable Product (#{most_profitable_id})", 
         f"€{most_profitable_value:.2f}"
         )
-
 
     with col2:
         st.metric(
