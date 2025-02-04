@@ -4,6 +4,9 @@ from contextlib import asynccontextmanager
 import uvicorn
 from app.api.routes import router as csv_router
 
+# Run the FastAPI app with Uvicorn:
+# uvicorn app.main:app --reload
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
