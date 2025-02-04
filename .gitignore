@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+venv/
+
+# Custom to the project
+notebooks/*.ipynb
+!notebooks/examples/*.ipynb
