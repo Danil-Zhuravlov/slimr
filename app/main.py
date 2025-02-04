@@ -4,10 +4,6 @@ from contextlib import asynccontextmanager
 import uvicorn
 from app.api.routes import router as csv_router
 
-# We'll add these modules as we build them
-# from app.api import routes
-# from app.config import settings
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
@@ -17,19 +13,10 @@ async def lifespan(app: FastAPI):
     """
     # Startup: Load things we need throughout the app's life
     print("Starting up Slimr...")
-    # Here we'll later add:
-    # - Database connection
-    # - Loading ML models
-    # - Initializing services
     
-    yield  # App runs here
+    yield 
     
-    # Shutdown: Clean up resources
     print("Shutting down Slimr...")
-    # Here we'll later add:
-    # - Close database connections
-    # - Save any pending data
-    # - Clean up resources
 
 # Create the FastAPI app
 app = FastAPI(
