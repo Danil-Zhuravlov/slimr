@@ -2,6 +2,7 @@ from fastapi import APIRouter, UploadFile, File, HTTPException
 import pandas as pd
 from io import StringIO
 from ..models.schemas import SaleResponse
+from ..processing.data_cleaning import clean_sales_data
 
 # create an router instance to use endpoints in main.py
 router = APIRouter()
@@ -34,8 +35,8 @@ async def upload_csv(file: UploadFile = File(...)):
                 detail=f"Missing required columns: {', '.join(missing_columns)}"
             )
         
-        # Basic data validation
-        df['date'] = pd.to_datetime(df['date'])  # Ensure date format is correct
+        # Data cleaning
+        df = clean_sales_data(df)
         
         # Shows to user what data have we received
         return SaleResponse(
