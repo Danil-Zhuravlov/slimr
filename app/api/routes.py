@@ -43,7 +43,7 @@ async def upload_csv(file: UploadFile = File(...)):
             filename=file.filename,
             row_count=len(df),
             columns=df.columns.tolist(),
-            sample_data=df.head(3).to_dict('records')  # Show first 3 rows
+            sample_data=df.to_dict('records')
         )
         
     except Exception as e:
